@@ -1,6 +1,7 @@
-plugins {
-    id "com.android.application"
-}
+//plugins {
+//    id "com.android.application"
+//}
+apply plugin: 'com.android.application'
 
 // in config.gradle
 configAndroidDomain project

@@ -148,6 +148,7 @@ def configAppDependencies(Project pro) {
         implementation fileTree(include: ['*.jar'], dir: 'libs')
         implementation project(':utilcode')
         implementation project(':subutil')
+        implementation project(':kevin')
 
         implementation depConfig.support.appcompat_v7
         implementation depConfig.support.design

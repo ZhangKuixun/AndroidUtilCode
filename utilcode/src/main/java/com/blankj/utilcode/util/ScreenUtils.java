@@ -8,6 +8,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -35,9 +36,32 @@ public final class ScreenUtils {
     }
 
     /**
-     * Return the width of screen, in pixel.
+     * 获取状态通知栏高度
      *
-     * @return the width of screen, in pixel
+     * @param activity
+     * @return
+     */
+    public static int getStatusBarHeight(Activity activity) {
+        Rect frame = new Rect();
+        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
+        return frame.top;
+    }
+
+    /**
+     * 获取底部菜单栏高度
+     *
+     * @param activity
+     * @return
+     */
+    public static int getNavigationBarHeight(Activity activity) {
+        Rect rect = new Rect();
+        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
+        int winHeight = activity.getWindow().getDecorView().getHeight();
+        return winHeight - rect.bottom;
+    }
+
+    /**
+     * 获得屏幕宽度, in pixel.
      */
     public static int getScreenWidth() {
         WindowManager wm = (WindowManager) Utils.getApp().getSystemService(Context.WINDOW_SERVICE);
@@ -54,9 +78,7 @@ public final class ScreenUtils {
     }
 
     /**
-     * Return the height of screen, in pixel.
-     *
-     * @return the height of screen, in pixel
+     * 获得屏幕高度, in pixel.
      */
     public static int getScreenHeight() {
         WindowManager wm = (WindowManager) Utils.getApp().getSystemService(Context.WINDOW_SERVICE);
@@ -157,7 +179,7 @@ public final class ScreenUtils {
     }
 
     /**
-     * Return whether screen is landscape.
+     * 判断是否横屏
      *
      * @return {@code true}: yes<br>{@code false}: no
      */
@@ -167,7 +189,7 @@ public final class ScreenUtils {
     }
 
     /**
-     * Return whether screen is portrait.
+     * 判断是否竖屏
      *
      * @return {@code true}: yes<br>{@code false}: no
      */

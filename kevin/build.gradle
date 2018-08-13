@@ -1,0 +1,5 @@
+apply plugin: 'com.android.library'
+
+// in config.gradle
+configAndroidDomain project
+configUtilCodeDependencies project
