@@ -2,7 +2,7 @@
 
 Gradle:
 ```groovy
-implementation 'com.blankj:utilcode:1.18.0'
+implementation 'com.blankj:utilcode:1.19.0'
 ```
 
 
@@ -347,6 +347,7 @@ compressBySampleSize            : 按采样大小压缩
 
 * ### 意图相关 -> [IntentUtils.java][intent.java]
 ```
+isIntentAvailable                : 判断意图是否可用
 getInstallAppIntent              : 获取安装 App（支持 6.0）的意图
 getUninstallAppIntent            : 获取卸载 App 的意图
 getLaunchAppIntent               : 获取打开 App 的意图
@@ -387,6 +388,8 @@ Config.setConsoleFilter  : 设置 log 控制台过滤器
 Config.setFileFilter     : 设置 log 文件过滤器
 Config.setStackDeep      : 设置 log 栈深度
 Config.setStackOffset    : 设置 log 栈偏移
+Config.setSaveDays       : 设置 log 可保留天数
+Config.addFormatter      : 新增 log 格式化器
 log                      : 自定义 tag 的 type 日志
 v                        : tag 为类名的 Verbose 日志
 vTag                     : 自定义 tag 的 Verbose 日志
@@ -540,6 +543,7 @@ isTablet                   : 判断是否是平板
 adaptScreen4VerticalSlide  : 适配垂直滑动的屏幕
 adaptScreen4HorizontalSlide: 适配水平滑动的屏幕
 cancelAdaptScreen          : 取消适配屏幕
+isAdaptScreen              : 是否适配屏幕
 ```
 
 * ### SD 卡相关 -> [SDCardUtils.java][sdcard.java] -> [Demo][sdcard.demo]

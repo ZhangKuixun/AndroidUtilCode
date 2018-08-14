@@ -11,9 +11,6 @@ import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
 
 import java.io.File;
 import java.io.Serializable;
@@ -32,13 +29,7 @@ import static org.junit.Assert.assertNull;
  *     desc  :
  * </pre>
  */
-@RunWith(RobolectricTestRunner.class)
-@Config(manifest = Config.NONE)
-public class CacheDoubleUtilsTest {
-
-    static {
-        TestUtils.init();
-    }
+public class CacheDoubleUtilsTest extends BaseTest {
 
     private CacheDiskUtils   mCacheDiskUtils;
     private CacheMemoryUtils mCacheMemoryUtils;

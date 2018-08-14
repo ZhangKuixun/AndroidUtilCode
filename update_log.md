@@ -1,3 +1,12 @@
+* 18/08/10 修复 ScreenUtils#adaptxx 导致获取状态栏和导航栏尺寸不对问题，发布 1.19.0
+* 18/08/09 新增 IntentUtils#isIntentAvailable，ToastUtils 传入空显示 null，发布 1.18.6
+* 18/08/08 修复 ScreenUtils#adaptxx 在第三方 SDK 会出现的问题，发布 1.18.5
+* 18/08/07 修复 ScreenUtils#adaptxx 在 API 26 以下无效的 bug，发布 1.18.4
+* 18/08/06 修复 ScreenUtils#screenShot 中 decorView.getDrawingCache() 为空的问题，发布 1.18.3
+* 18/08/05 修复 1.18.0 版本删去 `if (activity.getClass() == PermissionUtils.PermissionActivity.class) return;` 造成 PermissionUtils 获取栈顶 Activity 问题，发布 1.18.2
+* 18/08/04 新增 LogUtils#Config#setSaveDays，发布 1.18.1
+* 18/08/03 新增 LogUtils#Config#addFormatter，并新增 Array, Throwable, Bundle, Intent 的格式化输出
+* 18/08/02 修复 TimeUtils 中的 SimpleDateFormat 为 ThreadLocal 实现
 * 18/08/01 删除标记废弃的 CacheUtils, AppUtils#installApp, TimeUtils#getWeekIndex，发布 1.18.0
 * 18/07/30 替换 ScreenUtils#adaptPortraitScreen 和 ScreenUtils#adaptLandscapeScreen，为 ScreenUtils#adaptScreen4VerticalSlide 和 ScreenUtils#adaptScreen4HorizontalSlide
 * 18/07/28 修复 NetworkUtils#getIPAddress

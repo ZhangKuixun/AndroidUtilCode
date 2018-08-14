@@ -2,7 +2,7 @@
 
 Gradle:
 ```groovy
-implementation 'com.blankj:utilcode:1.18.0'
+implementation 'com.blankj:utilcode:1.19.0'
 ```
 
 
@@ -347,6 +347,7 @@ compressBySampleSize
 
 * ### About Intent -> [IntentUtils.java][intent.java]
 ```
+isIntentAvailable
 getInstallAppIntent
 getUninstallAppIntent
 getLaunchAppIntent
@@ -387,6 +388,8 @@ Config.setConsoleFilter
 Config.setFileFilter
 Config.setStackDeep
 Config.setStackOffset
+Config.setSaveDays
+Config.addFormatter
 log
 v
 vTag
@@ -540,6 +543,7 @@ isTablet
 adaptScreen4VerticalSlide
 adaptScreen4HorizontalSlide
 cancelAdaptScreen
+isAdaptScreen
 ```
 
 * ### About SDCard -> [SDCardUtils.java][sdcard.java] -> [Demo][sdcard.demo]
