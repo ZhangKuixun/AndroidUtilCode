@@ -21,14 +21,15 @@ import java.util.Locale;
  */
 public final class TimeUtils {
 
-    private static final DateFormat DEFAULT_FORMAT =
-            new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+    private static final DateFormat DEFAULT_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
 
     private TimeUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 
     /**
+     * 将时间戳转为时间字符串。
+     * <p>
      * Milliseconds to the formatted time string.
      * <p>The pattern is {@code yyyy-MM-dd HH:mm:ss}.</p>
      *
@@ -40,6 +41,8 @@ public final class TimeUtils {
     }
 
     /**
+     * 将时间戳转为时间字符串。
+     * <p>
      * Milliseconds to the formatted time string.
      *
      * @param millis The milliseconds.
@@ -334,6 +337,8 @@ public final class TimeUtils {
     }
 
     /**
+     * 获取当前时间字符串。
+     * <p>
      * Return the current formatted time string.
      * <p>The pattern is {@code yyyy-MM-dd HH:mm:ss}.</p>
      *
@@ -539,6 +544,8 @@ public final class TimeUtils {
     }
 
     /**
+     * 获取友好型与当前时间的差。
+     * <p>
      * Return the friendly time span by now.
      *
      * @param time   The formatted time string.
@@ -560,6 +567,8 @@ public final class TimeUtils {
     }
 
     /**
+     * 获取友好型与当前时间的差。
+     * <p>
      * Return the friendly time span by now.
      *
      * @param date The date.
@@ -579,6 +588,8 @@ public final class TimeUtils {
     }
 
     /**
+     * 获取友好型与当前时间的差。
+     * <p>
      * Return the friendly time span by now.
      *
      * @param millis The milliseconds.
@@ -1077,6 +1088,8 @@ public final class TimeUtils {
     }
 
     /**
+     * 判断是否闰年.
+     * <p>
      * Return whether it is leap year.
      *
      * @param date The date.
@@ -1110,6 +1123,8 @@ public final class TimeUtils {
     }
 
     /**
+     * 获取中式星期
+     * <p>
      * Return the day of week in Chinese.
      * <p>The pattern is {@code yyyy-MM-dd HH:mm:ss}.</p>
      *
@@ -1121,6 +1136,8 @@ public final class TimeUtils {
     }
 
     /**
+     * 获取中式星期
+     * <p>
      * Return the day of week in Chinese.
      *
      * @param time   The formatted time string.
@@ -1132,6 +1149,8 @@ public final class TimeUtils {
     }
 
     /**
+     * 获取中式星期
+     * <p>
      * Return the day of week in Chinese.
      *
      * @param date The date.
@@ -1142,6 +1161,8 @@ public final class TimeUtils {
     }
 
     /**
+     * 获取中式星期
+     * <p>
      * Return the day of week in Chinese.
      *
      * @param millis The milliseconds.
@@ -1330,8 +1351,8 @@ public final class TimeUtils {
         return CHINESE_ZODIAC[year % 12];
     }
 
-    private static final int[]    ZODIAC_FLAGS = {20, 19, 21, 21, 21, 22, 23, 23, 23, 24, 23, 22};
-    private static final String[] ZODIAC       = {
+    private static final int[] ZODIAC_FLAGS = {20, 19, 21, 21, 21, 22, 23, 23, 23, 24, 23, 22};
+    private static final String[] ZODIAC = {
             "水瓶座", "双鱼座", "白羊座", "金牛座", "双子座", "巨蟹座",
             "狮子座", "处女座", "天秤座", "天蝎座", "射手座", "魔羯座"
     };
@@ -1404,10 +1425,12 @@ public final class TimeUtils {
     }
 
     private static String millis2FitTimeSpan(long millis, int precision) {
-        if (precision <= 0) return null;
+        if (precision <= 0)
+            return null;
         precision = Math.min(precision, 5);
         String[] units = {"天", "小时", "分钟", "秒", "毫秒"};
-        if (millis == 0) return 0 + units[precision - 1];
+        if (millis == 0)
+            return 0 + units[precision - 1];
         StringBuilder sb = new StringBuilder();
         if (millis < 0) {
             sb.append("-");
@@ -1422,5 +1445,46 @@ public final class TimeUtils {
             }
         }
         return sb.toString();
+    }
+
+    /**
+     * 判断是否是同一年
+     *
+     * @param targetTime  目标时间
+     * @param compareTime 比较时间
+     * @return true同一年；false不同年
+     */
+    public static boolean isSameYear(Date targetTime, Date compareTime) {
+        int tarYear = getValueByCalendarField(targetTime, Calendar.YEAR);
+        int comYear = getValueByCalendarField(compareTime, Calendar.YEAR);
+        return tarYear == comYear;
+    }
+
+    /**
+     * 根据不同时间段，显示不同时间
+     */
+    public static String getTodayTimeBucket(Date date) {
+        int hour = getValueByCalendarField(date, Calendar.HOUR_OF_DAY);
+        SimpleDateFormat format = new SimpleDateFormat("KK:mm", Locale.getDefault());
+        SimpleDateFormat format1 = new SimpleDateFormat("hh:mm", Locale.getDefault());
+        if (hour >= 0 && hour < 5) {
+            return "凌晨 " + format.format(date);
+        } else if (hour >= 5 && hour < 12) {
+            return "上午 " + format.format(date);
+        } else if (hour >= 12 && hour < 18) {
+            return "下午 " + format1.format(date);
+        } else if (hour >= 18 && hour < 24) {
+            return "晚上 " + format1.format(date);
+        }
+        return "";
+    }
+
+    /**
+     * 根据日期获得星期
+     */
+    public static String getWeekOfDate(Date date) {
+        String[] weekDaysName = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
+        int intWeek = getValueByCalendarField(date, Calendar.DAY_OF_WEEK) - 1;
+        return weekDaysName[intWeek];
     }
 }
