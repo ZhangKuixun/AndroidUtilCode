@@ -1412,10 +1412,12 @@ public final class TimeUtils {
     }
 
     private static String millis2FitTimeSpan(long millis, int precision) {
-        if (precision <= 0) return null;
+        if (precision <= 0)
+            return null;
         precision = Math.min(precision, 5);
         String[] units = {"天", "小时", "分钟", "秒", "毫秒"};
-        if (millis == 0) return 0 + units[precision - 1];
+        if (millis == 0)
+            return 0 + units[precision - 1];
         StringBuilder sb = new StringBuilder();
         if (millis < 0) {
             sb.append("-");
@@ -1434,6 +1436,8 @@ public final class TimeUtils {
 
     /**
      * 判断是否是同一年
+     * <p>
+     * Return whether it is same year.
      *
      * @param targetTime  目标时间
      * @param compareTime 比较时间
