@@ -276,6 +276,28 @@ public final class EncryptUtils {
 
     /**
      * Return the hex string of SHA256 encryption.
+     * A lowercase letter.
+     *
+     * @param data The data.
+     * @return the hex string of SHA256 encryption
+     */
+    public static String encryptSHA256ToStringSmall(String data) {
+        if (data == null || data.length() == 0) return "";
+        MessageDigest md;
+        String strDes;
+        byte[] bt = data.getBytes();
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+            md.update(bt);
+            strDes = bytes2Hex(md.digest());
+        } catch (NoSuchAlgorithmException e) {
+            return "";
+        }
+        return strDes;
+    }
+
+    /**
+     * Return the hex string of SHA256 encryption.
      *
      * @param data The data.
      * @return the hex string of SHA256 encryption
@@ -1149,6 +1171,20 @@ public final class EncryptUtils {
             ret[j++] = HEX_DIGITS[bytes[i] & 0x0f];
         }
         return new String(ret);
+    }
+
+    //不对转换后的byte更改
+    private static String bytes2Hex(byte[] bts) {
+        StringBuilder des = new StringBuilder();
+        String tmp;
+        for (byte bt : bts) {
+            tmp = (Integer.toHexString(bt & 0xFF));
+            if (tmp.length() == 1) {
+                des.append("0");
+            }
+            des.append(tmp);
+        }
+        return des.toString();
     }
 
     private static byte[] hexString2Bytes(String hexString) {
