@@ -276,7 +276,7 @@ public final class EncryptUtils {
 
     /**
      * Return the hex string of SHA256 encryption.
-     * A lowercase letter.
+     * A lowercase letter.(小写sha256函数)
      *
      * @param data The data.
      * @return the hex string of SHA256 encryption
