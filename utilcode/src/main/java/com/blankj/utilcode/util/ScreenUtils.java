@@ -8,7 +8,6 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Point;
-import android.graphics.Rect;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -36,32 +35,9 @@ public final class ScreenUtils {
     }
 
     /**
-     * 获取状态通知栏高度
+     * Return the width of screen, in pixel.
      *
-     * @param activity
-     * @return
-     */
-    public static int getStatusBarHeight(Activity activity) {
-        Rect frame = new Rect();
-        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
-        return frame.top;
-    }
-
-    /**
-     * 获取底部菜单栏高度
-     *
-     * @param activity
-     * @return
-     */
-    public static int getNavigationBarHeight(Activity activity) {
-        Rect rect = new Rect();
-        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
-        int winHeight = activity.getWindow().getDecorView().getHeight();
-        return winHeight - rect.bottom;
-    }
-
-    /**
-     * 获得屏幕宽度, in pixel.
+     * @return the width of screen, in pixel
      */
     public static int getScreenWidth() {
         WindowManager wm = (WindowManager) Utils.getApp().getSystemService(Context.WINDOW_SERVICE);
@@ -78,7 +54,9 @@ public final class ScreenUtils {
     }
 
     /**
-     * 获得屏幕高度, in pixel.
+     * Return the height of screen, in pixel.
+     *
+     * @return the height of screen, in pixel
      */
     public static int getScreenHeight() {
         WindowManager wm = (WindowManager) Utils.getApp().getSystemService(Context.WINDOW_SERVICE);
@@ -179,7 +157,7 @@ public final class ScreenUtils {
     }
 
     /**
-     * 判断是否横屏
+     * Return whether screen is landscape.
      *
      * @return {@code true}: yes<br>{@code false}: no
      */
@@ -189,7 +167,7 @@ public final class ScreenUtils {
     }
 
     /**
-     * 判断是否竖屏
+     * Return whether screen is portrait.
      *
      * @return {@code true}: yes<br>{@code false}: no
      */
@@ -359,6 +337,9 @@ public final class ScreenUtils {
         appDm.density = activityDm.density;
         appDm.scaledDensity = activityDm.scaledDensity;
         appDm.densityDpi = activityDm.densityDpi;
+
+        Utils.ADAPT_SCREEN_ARGS.sizeInPx = sizeInPx;
+        Utils.ADAPT_SCREEN_ARGS.isVerticalSlide = isVerticalSlide;
     }
 
     /**
@@ -377,6 +358,22 @@ public final class ScreenUtils {
         appDm.density = systemDm.density;
         appDm.scaledDensity = systemDm.scaledDensity;
         appDm.densityDpi = systemDm.densityDpi;
+    }
+
+    /**
+     * Cancel adapt the screen.
+     */
+    public static void cancelAdaptScreen() {
+        Utils.cancelAdaptScreen();
+    }
+
+    /**
+     * Restore adapt the screen.
+     * <p>U should call the method of {@link ScreenUtils#adaptScreen4VerticalSlide(Activity, int)}
+     * or {@link ScreenUtils#adaptScreen4HorizontalSlide(Activity, int)} firstly.</p>
+     */
+    public static void restoreAdaptScreen() {
+        Utils.restoreAdaptScreen();
     }
 
     /**

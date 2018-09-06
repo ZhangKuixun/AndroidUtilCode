@@ -2,21 +2,8 @@
 
 Gradle:
 ```groovy
-implementation 'com.blankj:utilcode:1.19.0'
+implementation 'com.blankj:utilcode:1.20.0'
 ```
-
-
-## How to use
-
-```java
-// init it in the function of onCreate in ur Application
-Utils.init(application);
-```
-
-
-## Proguard
-
-U needn't do anything, because I add `consumerProguardFiles 'proguard-rules.pro'` in build.gradle.
 
 
 ## APIs
@@ -64,6 +51,8 @@ getAppVersionName                 : 获取 App 版本号
 getAppVersionCode                 : 获取 App 版本码
 getAppSignature                   : 获取 App 签名
 getAppSignatureSHA1               : 获取应用签名的的 SHA1 值
+getAppSignatureSHA256             : 获取应用签名的的 SHA256 值
+getAppSignatureMD5                : 获取应用签名的的 MD5 值
 getAppInfo                        : 获取 App 信息
 getAppsInfo                       : 获取所有已安装 App 信息
 ```
@@ -361,8 +350,10 @@ getCaptureIntent                 : 获取拍照的意图
 
 * ### 键盘相关 -> [KeyboardUtils.java][keyboard.java] -> [Demo][keyboard.demo]
 ```
-showSoftInput                     : 动态显示软键盘
-hideSoftInput                     : 动态隐藏软键盘
+showSoftInput                     : 显示软键盘
+showSoftInputUsingToggle          : 显示软键盘用 toggle
+hideSoftInput                     : 隐藏软键盘
+hideSoftInputUsingToggle          : 隐藏软键盘用 toggle
 toggleSoftInput                   : 切换键盘显示与否状态
 isSoftInputVisible                : 判断软键盘是否可见
 registerSoftInputChangedListener  : 注册软键盘改变监听器
@@ -406,6 +397,14 @@ aTag                     : 自定义 tag 的 Assert 日志
 file                     : log 到文件
 json                     : log 字符串之 json
 xml                      : log 字符串之 xml
+```
+
+* ### MetaData 相关 -> [MetaDataUtils.java][meta_data.java] -> [Demo][meta_data.demo]
+```
+getMetaDataInApp     : 获取 application 的 meta-data 值
+getMetaDataInActivity: 获取 activity 的 meta-data 值
+getMetaDataInService : 获取 service 的 meta-data 值
+getMetaDataInReceiver: 获取 receiver 的 meta-data 值
 ```
 
 * ### 网络相关 -> [NetworkUtils.java][network.java] -> [Demo][network.demo]
@@ -492,11 +491,12 @@ get        : 获取反射想要获取的
 
 * ### 正则相关 -> [RegexUtils.java][regex.java] -> [Test][regex.test]
 ```
-isMobileSimple : 验证手机号（简单）
-isMobileExact  : 验证手机号（精确）
+isMobileSimple : 简单验证手机号
+isMobileExact  : 精确验证手机号
 isTel          : 验证电话号码
 isIDCard15     : 验证身份证号码 15 位
-isIDCard18     : 验证身份证号码 18 位
+isIDCard18     : 简单验证身份证号码 18 位
+isIDCard18Exact: 精确验证身份证号码 18 位
 isEmail        : 验证邮箱
 isURL          : 验证 URL
 isZh           : 验证汉字
@@ -543,6 +543,7 @@ isTablet                   : 判断是否是平板
 adaptScreen4VerticalSlide  : 适配垂直滑动的屏幕
 adaptScreen4HorizontalSlide: 适配水平滑动的屏幕
 cancelAdaptScreen          : 取消适配屏幕
+restoreAdaptScreen         : 恢复适配屏幕
 isAdaptScreen              : 是否适配屏幕
 ```
 
@@ -816,6 +817,9 @@ getComments       : 获取压缩文件中的注释链表
 
 [log.java]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/main/java/com/blankj/utilcode/util/LogUtils.java
 [log.demo]: https://github.com/Blankj/AndroidUtilCode/blob/master/app/src/main/java/com/blankj/androidutilcode/feature/core/log/LogActivity.java
+
+[meta_data.java]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/main/java/com/blankj/utilcode/util/MetaDataUtils.java
+[meta_data.demo]: https://github.com/Blankj/AndroidUtilCode/blob/master/app/src/main/java/com/blankj/androidutilcode/feature/core/meta_data/MetaDataActivity.java
 
 [network.java]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/main/java/com/blankj/utilcode/util/NetworkUtils.java
 [network.demo]: https://github.com/Blankj/AndroidUtilCode/blob/master/app/src/main/java/com/blankj/androidutilcode/feature/core/network/NetworkActivity.java
