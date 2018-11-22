@@ -1,5 +1,7 @@
 package com.blankj.utilcode.util.reflect;
 
+import com.blankj.utilcode.util.EncodeUtils;
+import com.blankj.utilcode.util.EncryptUtils;
 import com.blankj.utilcode.util.ReflectUtils;
 
 import org.hamcrest.Matchers;
